@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Judge Lookup</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-inverse" id="navbar">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar_items" aria-expanded="false" name="button">
+
+          <span class="sr-only">Toggle Navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+
+        </button>
+        <a href="#" class="navbar-brand">Judex</a>
+      </div>
+      <div class="container collapse navbar-collapse" id="navbar_items">
+        <ul class="nav navbar-nav navbar-left">
+          <li> <a href="#">Judex</a> </li>
+          <li> <a href="#">County Index</a> </li>
+          <li> <a href="average_sentence.html">Average Sentences</a> </li>
+          <li> <a href="#">FAQ</a> </li>
+          <li> <a href="#">Team</a> </li>
+          <li class="">
+            <a href="#">
+              <form class="search navbar-right" action="#" method="post" id="search_items">
+                <input type="text" name="" placeholder="Search" id="search_bar">
+                <label for="search_bar"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></label>
+              </form>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+    </nav>
+
+
+    <form class="container-fluid" action="judge_lookup.php" method="post">
+      <div class="form-group col-md-6">
+        <label for="judge_name">Judge Name</label>
+        <input type="text" class="form-control" id="judge_name" placeholder="John Doe" required name="judge_name">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="judge_age">Judge Age</label>
+        <input type="text" class="form-control" id="judge_age" placeholder="23">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="judge_race">Judge Race</label>
+        <select class="form-control" name="race" id="judge_race">
+          <option value="null">Not Specified</option>
+          <option value="white">White</option>
+          <option value="asian">Asian</option>
+          <option value="black">Black</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="judge_gender">Judge Gender</label>
+        <select class="form-control" name="gender" id="judge_gender">
+          <option value="null">Not Specified</option>
+          <option value="F">Female</option>
+          <option value="M">Male</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="crime_type">Crime Type</label>
+        <select class="form-control" name="charge" id="crime_type">
+          <option value="Aggravated Assault">Aggravated Assault</option>
+          <option value="arson">Arson</option>
+          <option value="Assault">Assault</option>
+          <option value="Burglary">Burglary</option>
+          <option value="Domestic Violence">Domestic violence</option>
+          <option value="Drug Possession">Drug Possession</option>
+          <option value="Drug Trafficking">Drug Trafficking </option>
+          <option value="DUI">DUI</option>
+          <option value="Embezzlement">Embezzlement</option>
+          <option value="Extortion">Extortion</option>
+          <option value="Fraud">Fraud</option>
+          <option value="Homicide">Homicide</option>
+          <option value="Racketeering">Racketeering</option>
+          <option value="Rape">Rape</option>
+          <option value="Robbery">Robbery</option>
+          <option value="Sexual Assault">Sexual Assault</option>
+          <option value="Shoplifting">Shoplifting</option>
+          <option value="Solicitation">Solicitation</option>
+          <option value="Stalking">Stalking</option>
+          <option value="Tax Evasion">Tax Evasion</option>
+          <option value="Theft">Theft</option>
+          <option value="Vandalism">Vandalism</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="crime_region">Region</label>
+        <select class="form-control" name="region" id="crime_region">
+          <option value="Manhattan">Manhattan</option>
+          <option value="Queens">Queens</option>
+          <option value="Brooklyn">Brooklyn</option>
+          <option value="Bronx">Bronx</option>
+          <option value="Staten Island">Staten Island</option>
+        </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="judge_id">Judge ID</label>
+          <input type="text" class="form-control" id="judge_id" placeholder="5">
+        </div>
+            <p></p>
+            <button type="submit" class="form-group btn btn-primary col-md-1">Submit</button>
+
+
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </body>
+</html>
