@@ -18,11 +18,11 @@
           <span class="icon-bar"></span>
 
         </button>
-        <a href="#" class="navbar-brand">Judex</a>
+        <a href="index.html" class="navbar-brand">Judex</a>
       </div>
       <div class="container collapse navbar-collapse" id="navbar_items">
         <ul class="nav navbar-nav navbar-left">
-          <li> <a href="judge_lookup.html">Judex</a> </li>
+          <li> <a href="judge_lookup.html">Judge Lookup</a> </li>
           <li> <a href="#">County Index</a> </li>
           <li> <a href="average_sentence.html">Average Sentences</a> </li>
           <li> <a href="#">FAQ</a> </li>
@@ -58,7 +58,6 @@
     }
 if (array_key_exists("judge_id", $_POST)){
     $judge_id = $_POST["judge_id"];
-    
   }
   else{
     $judge_id = "";
@@ -77,13 +76,16 @@ if (array_key_exists("judge_gender", $_POST)){
   else{
     $judge_gender = "";
   }
+ 
   if (array_key_exists("judge_name", $_POST)){
     $judge_name = $_POST["judge_name"];
-    
+      
   }
   else{
+    
     $judge_name = "";
   }
+  
   if (array_key_exists("judge_race", $_POST)){
     $judge_race = $_POST["judge_race"];
     
@@ -96,7 +98,7 @@ if (array_key_exists("judge_gender", $_POST)){
     
   }
   else{
-    $chargee = "";
+    $charge = "";
   }
   
     
@@ -107,10 +109,16 @@ if (array_key_exists("judge_gender", $_POST)){
   else{
     $region = "";
   };
-
-    $sql = "SELECT judge_id, judge_name, judge_age, judge_gender, judge_race, charge, average_judge_sentence_per_charge FROM average_judge_sentences_detailed WHERE judge_name LIKE '%$judge_name%' AND judge_age LIKE '%$judge_age%' and judge_gender LIKE '%$judge_gender%' and judge_race LIKE '%$judge_race%' AND charge LIKE '%$charge%'";
+  if($judge_id == "") {
+    $sql = "SELECT judge_id, judge_name, judge_age, judge_gender, judge_race, region, charge, average_judge_sentence_per_charge FROM average_judge_sentences_detailed 
+    WHERE judge_name LIKE '%$judge_name%' AND judge_age LIKE '%$judge_age%' and 
+    judge_gender LIKE '%$judge_gender%' and judge_race LIKE '%$judge_race%' AND region like '%$region%' AND charge LIKE '%$charge%'";
+  }
+  else{
+    $sql = "SELECT judge_id, judge_name, judge_age, judge_gender, judge_race, region, charge, average_judge_sentence_per_charge FROM average_judge_sentences_detailed 
+    WHERE judge_id = $judge_id";
+  }
     $result = $conn -> query($sql);
-
     if($result == TRUE){
       echo "<table class='table table-striped table-bordered'>
               <th>Judge Name</th>
@@ -118,6 +126,7 @@ if (array_key_exists("judge_gender", $_POST)){
               <th>Judge Gender</th>
               <th>Judge Race</th>
               <th>Crime Type</th>
+              <th>Region</th>
               <th>Average Sentence</th>
               ";
       while ($row = $result -> fetch_assoc()) {
@@ -128,6 +137,7 @@ if (array_key_exists("judge_gender", $_POST)){
         echo "<td>". $row["judge_gender"]. "</td>";
         echo "<td>". $row["judge_race"]. "</td>";
         echo "<td>". $row["charge"]. "</td>";
+        echo "<td>". $row["region"]. "</td>";        
         echo "<td>". $row["average_judge_sentence_per_charge"]. "</td>";
         echo "</tr>";
       };

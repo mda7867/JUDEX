@@ -1,3 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default navbar-inverse" id="navbar">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar_items" aria-expanded="false" name="button">
+
+          <span class="sr-only">Toggle Navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+
+        </button>
+        <a href="index.html" class="navbar-brand">Judex</a>
+      </div>
+      <div class="container collapse navbar-collapse" id="navbar_items">
+        <ul class="nav navbar-nav navbar-left">
+          <li> <a href="judge_lookup.html">Judge Lookup</a> </li>
+          <li> <a href="#">County Index</a> </li>
+          <li> <a href="average_sentence.html">Average Sentences</a> </li>
+          <li> <a href="#">FAQ</a> </li>
+          <li> <a href="#">Team</a> </li>
+          <li class="">
+            <a href="#">
+              <form class="search navbar-right" action="#" method="post" id="search_items">
+                <input type="text" name="" placeholder="Search" id="search_bar">
+                <label for="search_bar"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button></label>
+              </form>
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+    </nav>
+
+    <div id="php_table" >
+
 <?php
 $servername = "127.0.0.1";
 $username = "root";
