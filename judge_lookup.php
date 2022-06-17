@@ -56,14 +56,57 @@
       echo "Connection failed";
       die("Connection failed: " . $conn->connect_error);
     }
-
+if (array_key_exists("judge_id", $_POST)){
     $judge_id = $_POST["judge_id"];
+    
+  }
+  else{
+    $judge_id = "";
+  }
+if (array_key_exists("judge_age", $_POST)){
     $judge_age = $_POST["judge_age"];
+    
+  }
+  else{
+    $judge_age = "";
+  }
+if (array_key_exists("judge_gender", $_POST)){
     $judge_gender = $_POST["judge_gender"];
-    $judge_race = $_POST["judge_race"];
-    $charge = $_POST["charge"];
-    $region = $_POST["region"];
+    
+  }
+  else{
+    $judge_gender = "";
+  }
+  if (array_key_exists("judge_name", $_POST)){
     $judge_name = $_POST["judge_name"];
+    
+  }
+  else{
+    $judge_name = "";
+  }
+  if (array_key_exists("judge_race", $_POST)){
+    $judge_race = $_POST["judge_race"];
+    
+  }
+  else{
+    $judge_race = "";
+  }
+  if (array_key_exists("charge", $_POST)){
+    $charge = $_POST["charge"];
+    
+  }
+  else{
+    $chargee = "";
+  }
+  
+    
+  if (array_key_exists("region", $_POST)){
+    $region = $_POST["region"];
+    
+  }
+  else{
+    $region = "";
+  };
 
     $sql = "SELECT judge_id, judge_name, judge_age, judge_gender, judge_race, charge, average_judge_sentence_per_charge FROM average_judge_sentences_detailed WHERE judge_name LIKE '%$judge_name%' AND judge_age LIKE '%$judge_age%' and judge_gender LIKE '%$judge_gender%' and judge_race LIKE '%$judge_race%' AND charge LIKE '%$charge%'";
     $result = $conn -> query($sql);
