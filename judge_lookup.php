@@ -123,7 +123,7 @@ if (array_key_exists("judge_gender", $_POST)){
       while ($row = $result -> fetch_assoc()) {
         echo "<tr>";
         echo "<td hidden=true>". $row["judge_id"]. "</td>";
-        echo "<td>". $row["judge_name"]. "</td>";
+        echo "<td> <a href='/JUDEX/judge_dashboard.php?judge_id=".$row["judge_id"]."'>". $row["judge_name"]. "</a></td>";
         echo "<td>". $row["judge_age"]. "</td>";
         echo "<td>". $row["judge_gender"]. "</td>";
         echo "<td>". $row["judge_race"]. "</td>";

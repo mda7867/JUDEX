@@ -10,8 +10,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-
-$sql = "Select charge as x,average_judge_sentence_per_charge as y from average_judge_sentences where judge_id = 1;";
+$judge_id = $_GET["judge_id"];
+$sql = "Select charge as x,average_judge_sentence_per_charge as y from average_judge_sentences where judge_id = $judge_id;";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
