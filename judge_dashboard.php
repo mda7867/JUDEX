@@ -67,7 +67,7 @@ if ($result->num_rows > 0) {
 	 }
 }
 
-	 $sql1 = "select charge as x,average_sentence as y from average_sentence_per_charge where charge in (Select charge from average_judge_sentences where judge_id = 1) order by charge;";
+	 $sql1 = "select charge as x,average_sentence as y from average_sentence_per_charge where charge in (Select charge from average_judge_sentences where judge_id = $judge_id) order by charge;";
      $result1 = $conn->query($sql1);
 
 if ($result1->num_rows > 0) {
