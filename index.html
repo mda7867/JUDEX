@@ -4,24 +4,28 @@
 
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="styles.scss">
     <title>Average Sentences</title>
   </head>
   <body>
-     <nav class="navbar navbar-default navbar-inverse" id="navbar">
+    <div class=""opacity-50"" id="veil">
+
+     <nav class="navbar navbar-expand-sm navbar-fixed-top navbar-inner navbar-default navbar-inverse" id="navbar" data-spy="affix">
+
        <div class="navbar-header">
          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar_items" aria-expanded="false" name="button">
-
            <span class="sr-only">Toggle Navigation</span>
            <span class="icon-bar"></span>
            <span class="icon-bar"></span>
            <span class="icon-bar"></span>
+          </button>
+           <a href="index.html" class="navbar-brand">
+              <img src="images/judex_brand.png" width="30" height="30" class="d-inline-block align-top" alt="Judex Brand">
+            </a>
 
-         </button>
-         <a href="index.html" class="navbar-brand">Judex</a>
-       </div>
+        </div>
        <div class="container collapse navbar-collapse" id="navbar_items">
-         <ul class="nav navbar-nav navbar-left">          
+         <ul class="nav navbar-nav navbar-right">
           <li> <a href="judge_lookup.html">Judge Lookup</a> </li>
           <li> <a href="#">County Index</a> </li>
           <li> <a href="average_sentence.html">Average Sentences</a> </li>
@@ -40,6 +44,28 @@
        </div>
 
      </nav>
+     <header class="masthead">
+       <div class="container h-100">
+         <div class="row h-100 align-items-center">
+         </div>
+       </div>
+     </header>
+
+    </div>
+
+    "<div>
+      <table>
+        <tr>
+        <td><a href='judge_lookup.html'><div class="polaroid"><img src="images/Judge_lookup.jpg" width="250" height="250" /><p><font size="+2"><p><i>Judge Lookup</font></i></p></div></a></td>
+        <td><a href="average_sentence.html"><div class="polaroid"><img src="images\Comparison_center.jpg" width="250" height="250"/><font size="+2"><p><i>Average sentence</font></i></p></div></td>
+        <td><a href="#"><div class="polaroid"><img src="images\countyindex.jpg" width="250" height="250"/><font size="+2"><p><i>County Index</font></i></p></div></td>
+        </tr>
+      </table>
+    </div>
+
+
+
+
 
      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
