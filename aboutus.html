@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Average Sentences</title>
   </head>
   <body>
@@ -39,48 +38,18 @@
        </div>
 
      </nav>
-
-<h2>Average Sentence</h2>
-
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "Judex_tables";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-  echo "Connection failed";
-  die("Connection failed: " . $conn->connect_error);
-}
-
-$charges = $_POST["charge"];
-
-
-$sql = "SELECT charge, average_sentence FROM average_sentence_per_charge WHERE charge = '$charges'"; // IDEA: WHERE region = something (we need to be able to group by regions) ;
-$result = $conn->query($sql);
-
-if ($result == TRUE){
-  while($row = $result->fetch_assoc()){
-            $average_sentence = $row["average_sentence"];
-        //demonstrates outputting a column from a select as html row by row
-        echo '<p>The average sentence of this crime is '.$average_sentence."</p>";
-        }     ;
-} else {
-  echo "Error: " . $sql . "<br>" . $conn->error;
-}
-
-$conn->close();
-
-?>
-
-<br><br>
-<a href="index.html">Back to home</a>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-</body>
-</html>
+     <style>
+        div.a{
+            text-align:center;
+        }
+     </style>
+     <div class="a">
+        <br>
+        <br>
+     <h2 style="color:rgb(0,71,177)"><font size="+5"></font><u><i>Our Mission</i></u></font></h2>
+     <br>
+     <br>
+     <p style="font-family:Arial, Helvetica, sans-serif"><i><font size="+1">Due to unfairness within the Justice system, there is an imbalance regarding the incarceration and sentencing standards of the United States Justice System. As a<br> result of this imbalance, people of color such as African Americans are more likely to face negative judicial bias, which results in harsher punishments compared<br> to other races. To reduce the unfair bias in the system by identifying bad actors,  Judex aims to enable a more balanced judicial system.</i></font></p>
+     
+    </div>
+    
