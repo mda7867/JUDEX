@@ -1,44 +1,43 @@
 #search_items{
-  align-items: center;}
-
-  .masthead {
-    height: 40vh;
-    min-height: 500px;
-    background-image: url('https://www.ritchielawfirm.com/wp-content/uploads/2021/02/judge-5313542_1920-1080x675.jpg.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    justify-content: space-between;
-    z-index: -1;
+    align-items: center;}
+  
+    .masthead {
+      height: 40vh;
+      min-height: 500px;
+      background-image: url('https://www.ritchielawfirm.com/wp-content/uploads/2021/02/judge-5313542_1920-1080x675.jpg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      justify-content: space-between;
+      z-index: -1;
+    }
+    .navbar-inner {
+        background: transparent;
+    }
+    #veil{
+      color: #41393E;
+    }
+  
+    .icon-bar{
+      color: black;
+    }
+  
+  div.polaroid {
+    width: 70%;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 25px;
   }
-  .navbar-inner {
-      background: transparent;
+  td {
+    background-color:white;
+    text-align: center;
+    vertical-align: center;
+    align-items: center;
+  
   }
-  #veil{
-    color: #41393E;
+  
+  
+  .navbar{
+    margin: none;
   }
-
-  .icon-bar{
-    color: black;
-  }
-
-div.polaroid {
-  width: 70%;
-  background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 25px;
-}
-td {
-  background-color:white;
-  text-align: center;
-  vertical-align: center;
-  align-items: center;
-
-}
-table {
-  width: 111%;
-}
-
-.navbar{
-  margin: none;
-}
+  
