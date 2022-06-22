@@ -23,8 +23,7 @@
           <li> <a href="judge_lookup.html">Judge Lookup</a> </li>
           <li> <a href="county_lookup.html">County Lookup</a> </li>
           <li> <a href="average_sentence.html">Average Sentences</a> </li>
-          <li> <a href="#">FAQ</a> </li>
-          <li> <a href="#">Team</a> </li>
+          <li> <a href="aboutus.html">About Us</a> </li>
           <li class="">
             <a href="#">
               <form class="search navbar-right" action="#" method="post" id="search_items">

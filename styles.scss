@@ -11,19 +11,20 @@
     justify-content: space-between;
     z-index: -1;
   }
-  .navbar-inner {
-      background: transparent;
-  }
+  
   #veil{
     color: #41393E;
   }
+  .navbar-inner {
+    background: transparent;
+}
 
   .icon-bar{
     color: black;
   }
 
 div.polaroid {
-  width: 70%;
+  width: 470px;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 25px;
@@ -33,10 +34,13 @@ td {
   text-align: center;
   vertical-align: center;
   align-items: center;
+  padding-bottom: 45px;
+  padding-top: 30px;
 
 }
 table {
-  width: 111%;
+  width:  100%;
+  
 }
 
 .navbar{

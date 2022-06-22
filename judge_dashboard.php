@@ -23,10 +23,9 @@
       <div class="container collapse navbar-collapse" id="navbar_items">
         <ul class="nav navbar-nav navbar-left">
           <li> <a href="judge_lookup.html">Judge Lookup</a> </li>
-          <li> <a href="#">County Index</a> </li>
+          <li> <a href="county_lookup.html">County Lookup</a> </li>
           <li> <a href="average_sentence.html">Average Sentences</a> </li>
-          <li> <a href="#">FAQ</a> </li>
-          <li> <a href="#">Team</a> </li>
+          <li> <a href="aboutus.html">About Us</a> </li>
           <li class="">
             <a href="#">
               <form class="search navbar-right" action="#" method="post" id="search_items">
@@ -67,7 +66,7 @@ if ($result->num_rows > 0) {
 	 }
 }
 
-	 $sql1 = "select charge as x,average_sentence as y from average_sentence_per_charge where charge in (Select charge from average_judge_sentences where judge_id = 1) order by charge;";
+	 $sql1 = "select charge as x,average_sentence as y from average_sentence_per_charge where charge in (Select charge from average_judge_sentences where judge_id = $judge_id) order by charge;";
      $result1 = $conn->query($sql1);
 
 if ($result1->num_rows > 0) {
