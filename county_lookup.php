@@ -51,7 +51,7 @@
       die("Connection failed: " . $conn->connect_error);
     }
 
-    if (array_key_exists("region", $_POST)){
+    if (array_key_exists("first_region", $_POST)){
         $first_region = $_POST["first_region"];
 
       }
@@ -59,7 +59,7 @@
         echo "Region does not exist";
       }
 
-      if (array_key_exists("region", $_POST)){
+      if (array_key_exists("second_region", $_POST)){
           $second_region = $_POST["second_region"];
 
         }
@@ -67,15 +67,30 @@
           $second_region = "";
         }
 
-      if (array_key_exists("charge", $_POST)){
-        $charge = $_POST["charge"];
+        if (array_key_exists("charge", $_POST)){
+          $charge = $_POST["charge"];
 
-      }
-      else{
-        $charge = "";
-      }
+        }
+        else{
+          $charge = "";
+        }
 
-$sql = "SELECT * FROM average_sentence_per_region WHERE charge IN '($charge)'";
+
+
+  $sql = "Select charge as x,average_sentence_region as y from average_sentence_per_region where charge in (";
+
+  if (array_key_exists("charge", $_POST)){
+    foreach ($_POST["charge"] as $crime) {
+      $sql .="'". $crime ."'".  ',';
+    };
+  };
+
+  rtrim($sql, ',');
+  $sql .= ");";
+ echo "$sql";
+
+
+
 
 
     $result = $conn -> query($sql);
