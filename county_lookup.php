@@ -85,43 +85,94 @@
     };
   };
 
-  rtrim($sql, ',');
-  $sql .= ");";
- echo "$sql";
+  $sql = rtrim($sql, ',');
+  $sql .= ") and region = '$first_region'";
 
+ $result = $conn->query($sql);
 
+ if ($result->num_rows > 0) {
+   // output data of each row
+   $dataPoints1 = array();
+   while($row = $result->fetch_assoc()) {
+ 	array_push($dataPoints1, array("label"=> "$row[x]", "y"=> "$row[y]"));
+ 	 }
+ }
 
+ $sql1 = "Select charge as x,average_sentence_region as y from average_sentence_per_region where charge in (";
 
+ if (array_key_exists("charge", $_POST)){
+   foreach ($_POST["charge"] as $crime) {
+     $sql1 .="'". $crime ."'".  ',';
+   };
+ };
 
-    $result = $conn -> query($sql);
-    if($result == TRUE){
-      echo "<table class='table table-striped table-bordered'>
-              <th>Judge Name</th>
-              <th>Judge Age</th>
-              <th>Judge Gender</th>
-              <th>Judge Race</th>
-              <th>Crime Type</th>
-              <th>Region</th>
-              <th>Average Sentence</th>
-              ";
-      while ($row = $result -> fetch_assoc()) {
-        echo "<tr>";
-        echo "<td hidden=true>". $row["judge_id"]. "</td>";
-        echo "<td> <a href='/JUDEX/judge_dashboard.php?judge_id=".$row["judge_id"]."'>". $row["judge_name"]. "</a></td>";
-        echo "<td>". $row["judge_age"]. "</td>";
-        echo "<td>". $row["judge_gender"]. "</td>";
-        echo "<td>". $row["judge_race"]. "</td>";
-        echo "<td>". $row["charge"]. "</td>";
-        echo "<td>". $row["region"]. "</td>";
-        echo "<td>". $row["average_judge_sentence_per_charge"]. "</td>";
-        echo "</tr>";
-      };
-      echo "</table>";
-    } else{
-      echo "Error getting query";
-    }
-    $conn -> close();
+ $sql1 = rtrim($sql1, ',');
+ $sql1 .= ") and region = '$second_region'";
+
+$result = $conn->query($sql1);
+
+if ($result->num_rows > 0) {
+  // output data of each row
+  $dataPoints2 = array();
+  while($row = $result->fetch_assoc()) {
+ array_push($dataPoints2, array("label"=> "$row[x]", "y"=> "$row[y]"));
+  }
+}
+ $conn->close();
      ?>
 
-  </body>
+
+
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2",
+	title:{
+		text: "Region Sentence Comparison"
+	},
+	axisY:{
+		includeZero: true
+	},
+	legend:{
+		cursor: "pointer",
+		verticalAlign: "center",
+		horizontalAlign: "right",
+		itemclick: toggleDataSeries
+	},
+	data: [{
+		type: "column",
+		name:  "<?php print $first_region; ?>",
+		indexLabel: "{y}",
+		yValueFormatString: "#0.##",
+		showInLegend: true,
+		dataPoints: <?php echo json_encode($dataPoints1, JSON_NUMERIC_CHECK); ?>
+	},{
+		type: "column",
+		name: "<?php print $second_region; ?>",
+		indexLabel: "{y}",
+		yValueFormatString: "#0.##",
+		showInLegend: true,
+		dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>
+	}]
+});
+chart.render();
+
+function toggleDataSeries(e){
+	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+		e.dataSeries.visible = false;
+	}
+	else{
+		e.dataSeries.visible = true;
+	}
+	chart.render();
+}
+
+}
+</script>
+<body>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
 </html>
