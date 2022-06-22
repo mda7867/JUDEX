@@ -85,7 +85,7 @@
     };
   };
 
-  rtrim($sql, ',');
+  $sql = rtrim($sql, ',');
   $sql .= ");";
  echo "$sql";
 
