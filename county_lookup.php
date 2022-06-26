@@ -80,13 +80,15 @@
   $sql = "Select charge as x,average_sentence_region as y from average_sentence_per_region where charge in (";
 
   if (array_key_exists("charge", $_POST)){
-    foreach ($_POST["charge"] as $crime) {
+    foreach ($_POST["charge"] as $crime){ 
       $sql .="'". $crime ."'".  ',';
     };
-  };
-
-  $sql = rtrim($sql, ',');
+    $sql = rtrim($sql, ',');
   $sql .= ") and region = '$first_region'";
+  }
+  else{
+    $sql = "Select charge as x,average_sentence_region as y from average_sentence_per_region where region = '$first_region'";
+  };
 
  $result = $conn->query($sql);
 
@@ -98,16 +100,21 @@
  	 }
  }
 
- $sql1 = "Select charge as x,average_sentence_region as y from average_sentence_per_region where charge in (";
+ $sql1 = "select '' as x, '' as y union Select charge as x,average_sentence_region as y from average_sentence_per_region where charge in (";
 
  if (array_key_exists("charge", $_POST)){
    foreach ($_POST["charge"] as $crime) {
      $sql1 .="'". $crime ."'".  ',';
    };
- };
+   $sql1 = rtrim($sql1, ',');
+   $sql1 .= ") and region = '$second_region'";  
+ }
+ 
+ else{
+  $sql1 = "select '' as x, '' as y union Select charge as x,average_sentence_region as y from average_sentence_per_region where region = '$second_region'";
+};
 
- $sql1 = rtrim($sql1, ',');
- $sql1 .= ") and region = '$second_region'";
+ 
 
 $result = $conn->query($sql1);
 
