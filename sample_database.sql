@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 27, 2022 at 06:57 PM
+-- Generation Time: Jun 28, 2022 at 08:30 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.19
 
@@ -62,23 +62,23 @@ CREATE TABLE IF NOT EXISTS `average_sentence_per_charge` (
 -- (See below for the actual view)
 --
 CREATE TABLE IF NOT EXISTS `average_sentence_per_region` (
-`charge` varchar(20)
-,`region` varchar(20)
-,`average_sentence_region` double
-,`number_of_cases_in_region` bigint(21)
+`region_1_charge` varchar(20)
+,`region_1` varchar(20)
+,`average_sentence_for_region_1` double
+,`number_of_cases_in_region_1` bigint(21)
 );
 
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `average_sentence_per_region2`
+-- Stand-in structure for view `average_sentence_per_region_2`
 -- (See below for the actual view)
 --
-CREATE TABLE IF NOT EXISTS `average_sentence_per_region2` (
-`crime_type` varchar(20)
-,`city` varchar(20)
-,`region_average_sentence` double
-,`number_of_cases_in_city` bigint(21)
+CREATE TABLE IF NOT EXISTS `average_sentence_per_region_2` (
+`region_2_charge` varchar(20)
+,`region_2` varchar(20)
+,`average_sentence_for_region_2` double
+,`number_of_cases_in_region_2` bigint(21)
 );
 
 -- --------------------------------------------------------
@@ -159,14 +159,13 @@ INSERT INTO `case_table` (`case_id`, `judge_id`, `region`, `date1`) VALUES
 -- (See below for the actual view)
 --
 CREATE TABLE IF NOT EXISTS `comparison_view` (
-`charge` varchar(20)
-,`region` varchar(20)
-,`average_sentence_region` double
-,`number_of_cases_in_region` bigint(21)
-,`crime_type` varchar(20)
-,`city` varchar(20)
-,`region_average_sentence` double
-,`number_of_cases_in_city` bigint(21)
+`region_1_charge` varchar(20)
+,`region_1` varchar(20)
+,`average_sentence_for_region_1` double
+,`number_of_cases_in_region_1` bigint(21)
+,`region_2` varchar(20)
+,`average_sentence_for_region_2` double
+,`number_of_cases_in_region_2` bigint(21)
 );
 
 -- --------------------------------------------------------
@@ -391,16 +390,16 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `average_sentence_per_region`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `judex_tables`.`average_sentence_per_region`  AS SELECT `main_view`.`charge` AS `charge`, `main_view`.`region` AS `region`, avg(`main_view`.`sentence`) AS `average_sentence_region`, count(0) AS `number_of_cases_in_region` FROM `judex_tables`.`main_view` GROUP BY `main_view`.`charge`, `main_view`.`region` ORDER BY `main_view`.`region` ASC  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `judex_tables`.`average_sentence_per_region`  AS SELECT `main_view`.`charge` AS `region_1_charge`, `main_view`.`region` AS `region_1`, avg(`main_view`.`sentence`) AS `average_sentence_for_region_1`, count(0) AS `number_of_cases_in_region_1` FROM `judex_tables`.`main_view` GROUP BY `main_view`.`charge`, `main_view`.`region` ORDER BY `main_view`.`region` ASC  ;
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `average_sentence_per_region2`
+-- Structure for view `average_sentence_per_region_2`
 --
-DROP TABLE IF EXISTS `average_sentence_per_region2`;
+DROP TABLE IF EXISTS `average_sentence_per_region_2`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `judex_tables`.`average_sentence_per_region2`  AS SELECT `main_view`.`charge` AS `crime_type`, `main_view`.`region` AS `city`, avg(`main_view`.`sentence`) AS `region_average_sentence`, count(0) AS `number_of_cases_in_city` FROM `judex_tables`.`main_view` GROUP BY `main_view`.`charge`, `main_view`.`region` ORDER BY `main_view`.`region` ASC  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `judex_tables`.`average_sentence_per_region_2`  AS SELECT `main_view`.`charge` AS `region_2_charge`, `main_view`.`region` AS `region_2`, avg(`main_view`.`sentence`) AS `average_sentence_for_region_2`, count(0) AS `number_of_cases_in_region_2` FROM `judex_tables`.`main_view` GROUP BY `main_view`.`charge`, `main_view`.`region` ORDER BY `main_view`.`region` ASC  ;
 
 -- --------------------------------------------------------
 
@@ -409,7 +408,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `comparison_view`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `judex_tables`.`comparison_view`  AS SELECT `region_1`.`charge` AS `charge`, `region_1`.`region` AS `region`, `region_1`.`average_sentence_region` AS `average_sentence_region`, `region_1`.`number_of_cases_in_region` AS `number_of_cases_in_region`, `region_2`.`crime_type` AS `crime_type`, `region_2`.`city` AS `city`, `region_2`.`region_average_sentence` AS `region_average_sentence`, `region_2`.`number_of_cases_in_city` AS `number_of_cases_in_city` FROM (`judex_tables`.`average_sentence_per_region` `region_1` join `judex_tables`.`average_sentence_per_region2` `region_2` on(`region_1`.`charge` = `region_2`.`crime_type`))  ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `judex_tables`.`comparison_view`  AS SELECT `average_sentence_per_region`.`region_1_charge` AS `charge`, `average_sentence_per_region`.`region_1` AS `region_1`, `average_sentence_per_region`.`average_sentence_for_region_1` AS `average_sentence_for_region_1`, `average_sentence_per_region`.`number_of_cases_in_region_1` AS `number_of_cases_in_region_1`, `average_sentence_per_region_2`.`region_2` AS `region_2`, `average_sentence_per_region_2`.`average_sentence_for_region_2` AS `average_sentence_for_region_2`, `average_sentence_per_region_2`.`number_of_cases_in_region_2` AS `number_of_cases_in_region_2` FROM (`judex_tables`.`average_sentence_per_region` join `judex_tables`.`average_sentence_per_region_2` on(`average_sentence_per_region`.`region_1_charge` = `average_sentence_per_region_2`.`region_2_charge`))  ;
 
 -- --------------------------------------------------------
 

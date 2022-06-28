@@ -75,17 +75,17 @@
           $charge = "";
         }
 
-$sql = "Select charge as x,average_sentence_region as y from comparison_view where charge in(";
+$sql = "Select charge as x,average_sentence_for_region_1 as y from comparison_view where charge in(";
 if (strlen($second_region)>0) {
   if (array_key_exists("charge", $_POST)){
     foreach ($_POST["charge"] as $crime){
       $sql .="'". $crime ."'".  ',';
     };
     $sql = rtrim($sql, ',');
-  $sql .= ") and region = '$first_region' and city = '$second_region'";
+  $sql .= ") and region_1 = '$first_region' and region_2 = '$second_region'";
   }
   else{
-    $sql = "Select charge as x,average_sentence_region as y from comparison_view where region = '$first_region' and city = '$second_region'";
+    $sql = "Select charge as x,average_sentence_for_region_1 as y from comparison_view where region_1 = '$first_region' and region_2 = '$second_region'";
   };
 }
 else{
@@ -94,13 +94,13 @@ else{
       $sql .="'". $crime ."'".  ',';
     };
     $sql = rtrim($sql, ',');
-  $sql .= ") and region = '$first_region' group by charge";
+  $sql .= ") and region_1 = '$first_region' group by charge";
 }
   else{
-    $sql = "Select charge as x,average_sentence_region as y from comparison_view where region = '$first_region' group by charge";
+    $sql = "Select charge as x,average_sentence_for_region_1 as y from comparison_view where region_1 = '$first_region' group by charge";
   };
 };
-echo $sql;
+
  $result = $conn->query($sql);
 
  if ($result->num_rows > 0) {
@@ -112,18 +112,18 @@ echo $sql;
  }
 
 
- $sql1 = " Select charge as x,region_average_sentence as y from comparison_view where charge in(";
+ $sql1 = " Select charge as x,average_sentence_for_region_2 as y from comparison_view where charge in(";
 
   if (array_key_exists("charge", $_POST)){
     foreach ($_POST["charge"] as $crime) {
       $sql1 .="'". $crime ."'".  ',';
     };
     $sql1 = rtrim($sql1, ',');
-    $sql1 .= ") and region = '$first_region' and city = '$second_region'";
+    $sql1 .= ") and region_1 = '$first_region' and region_2 = '$second_region'";
   }
 
   else{
-   $sql1 = "Select charge as x,region_average_sentence as y from comparison_view where region = '$first_region' and city = '$second_region'";
+   $sql1 = "Select charge as x,average_sentence_for_region_2 as y from comparison_view where region_1 = '$first_region' and region_2 = '$second_region'";
  };
 
 
